@@ -1,0 +1,45 @@
+.chat-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background-color: #f4f4f9;
+  border-radius: 8px;
+}
+
+#messages {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 20px;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.task-item,
+.notification {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.notification {
+  color: #888;
+  font-style: italic;
+}
+
+.task-item {
+  background-color: #e0f7fa;
+}
+
+input[type="text"],
+button {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+button {
+  margin-left: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}

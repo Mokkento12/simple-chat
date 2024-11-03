@@ -11,12 +11,13 @@ app.use(express.static("public"));
 io.on("connection", (socket) => {
   console.log("Пользователь подключился");
 
-  socket.on("chat message", (msg) => {
-    io.emit("chat message", msg); // Отправка сообщения всем подключенным клиентам
-  });
+  socket.broadcast.emit(
+    "user connected",
+    "Новый пользователь присоединился к чату"
+  );
 
   socket.on("disconnect", () => {
-    console.log("Пользователь отключился");
+    io.emit("user disconnected", "Пользователь покинул чат");
   });
 });
 
