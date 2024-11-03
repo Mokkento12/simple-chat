@@ -3,48 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Простой Чат</title>
-    <style>
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            padding: 8px;
-            margin-bottom: 5px;
-            background-color: #f1f1f1;
-        }
-    </style>
+    <title>Чат на Socket.IO</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Простой Чат</h1>
-    <ul id="messages"></ul>
-    <form id="form" action="">
-        <input id="input" autocomplete="off"
-            placeholder="Введите сообщение..." /><button>Отправить</button>
-    </form>
+    <div class="chat-container">
+        <h1>Простой Чат</h1>
+        <ul id="messages"></ul>
+        <form id="form" action="">
+            <input id="input" autocomplete="off"
+                placeholder="Введите сообщение..." /><button>Отправить</button>
+        </form>
+    </div>
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-        const socket = io();
-        const form = document.getElementById('form');
-        const input = document.getElementById('input');
-        const messages = document.getElementById('messages');
-        form.addEventListener('submit', function(event) {
-            event
-                .preventDefault(); // Предотвращаем перезагрузку страницы
-            if (input.value) {
-                socket.emit('chat message', input
-                    .value); // Отправляем сообщение на сервер
-                input.value = ''; // Очищаем поле ввода
-            }
-        });
-        socket.on('chat message', function(msg) {
-            const item = document.createElement('li');
-            item.textContent = msg; // Добавляем сообщение в список
-            messages.appendChild(item);
-            window.scrollTo(0, document.body
-                .scrollHeight); // Прокручиваем страницу вниз
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

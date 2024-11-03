@@ -1,26 +1,26 @@
 const express = require("express");
 const http = require("http");
-const socketIo = require("socket.io");
+const { Server } = require("socket.io");
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server);
+const io = new Server(server);
 
-app.use(express.static("public")); // Используем папку public для статических файлов
+app.use(express.static("public"));
 
 io.on("connection", (socket) => {
-  console.log("A user connected");
+  console.log("Пользователь подключился");
 
   socket.on("chat message", (msg) => {
-    io.emit("chat message", msg); // Отправляем сообщение всем пользователям
+    io.emit("chat message", msg); // Отправка сообщения всем подключенным клиентам
   });
 
   socket.on("disconnect", () => {
-    console.log("User disconnected");
+    console.log("Пользователь отключился");
   });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 server.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Сервер запущен на http://localhost:${PORT}`);
 });
